@@ -11,7 +11,7 @@ var news = {
 	_cacheBuster: Math.floor((new Date().getTime()) / 1200 / 1000),
 	_failedAttempts: 0,
 	fetchInterval: config.news.fetchInterval || 60000,
-	updateInterval: config.news.interval || 5500,
+	updateInterval: config.news.interval || 55000,
 	fadeInterval: 2000,
 	intervalId: null,
 	fetchNewsIntervalId: null
@@ -117,14 +117,17 @@ news.showNews = function () {
 	} else if (this.newsItems.length === 0 && this.seenNewsItem.length !== 0) {
 		this.newsItems = this.seenNewsItem.splice(0);
 	}
+	
+	var _newsHtml = '<table>';
+	var _items = news.newsItems.splice(0,4);
+	_items.forEach(function(_item){
+    	_newsHtml += '<tr><td>' + _item + '</td></tr>';
+	});
+	this.seenNewsItem.push(_items);
 
-	var _location = Math.floor(Math.random() * this.newsItems.length);
+	_newsHtml += '</table>';
 
-	var _item = news.newsItems.splice(_location, 1)[0];
-
-	this.seenNewsItem.push(_item);
-
-	$(this.newsLocation).updateWithText(_item, this.fadeInterval);
+	$(this.newsLocation).updateWithText(_newsHtml, this.fadeInterval);
 
 	return true;
 

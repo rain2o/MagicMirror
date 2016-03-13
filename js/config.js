@@ -1,5 +1,5 @@
 var config = {
-    lang: 'nl',
+    lang: 'en',
     time: {
         timeFormat: 12,
         displaySeconds: true,
@@ -9,57 +9,31 @@ var config = {
         //change weather params here:
         //units: metric or imperial
         params: {
-            q: 'Baarn,Netherlands',
-            units: 'metric',
+            q: 'Knoxville, US',
+            units: 'imperial',
             // if you want a different lang for the weather that what is set above, change it here
-            lang: 'nl',
-            APPID: 'YOUR_FREE_OPENWEATHER_API_KEY'
+            lang: 'en',
+            APPID: '1d1a62855c20cde783365c8a0facf33a',
+            cnt: 1
         }
-    },
-    compliments: {
-        interval: 30000,
-        fadeInterval: 4000,
-        morning: [
-            'Good morning, handsome!',
-            'Enjoy your day!',
-            'How was your sleep?'
-        ],
-        afternoon: [
-            'Hello, beauty!',
-            'You look sexy!',
-            'Looking good today!'
-        ],
-        evening: [
-            'Wow, you look hot!',
-            'You look nice!',
-            'Hi, sexy!'
-        ]
     },
     calendar: {
         maximumEntries: 10, // Total Maximum Entries
 		displaySymbol: true,
 		defaultSymbol: 'calendar', // Fontawsome Symbol see http://fontawesome.io/cheatsheet/
         urls: [
-		{
-			symbol: 'calendar-plus-o', 
-			url: 'https://p01-calendarws.icloud.com/ca/subscribe/1/n6x7Farxpt7m9S8bHg1TGArSj7J6kanm_2KEoJPL5YIAk3y70FpRo4GyWwO-6QfHSY5mXtHcRGVxYZUf7U3HPDOTG5x0qYnno1Zr_VuKH2M'
-		},
-		{
-			symbol: 'soccer-ball-o',
-			url: 'https://www.google.com/calendar/ical/akvbisn5iha43idv0ktdalnor4%40group.calendar.google.com/public/basic.ics',
-		},
-		// {
-			// symbol: 'mars',
-			// url: "https://server/url/to/his.ics",
-		// },
-		// {
-			// symbol: 'venus',
-			// url: "https://server/url/to/hers.ics",
-		// },
-		// {
-			// symbol: 'venus-mars',
-			// url: "https://server/url/to/theirs.ics",
-		// },
+            {
+                symbol: 'calendar',
+                url: 'https://calendar.google.com/calendar/ical/jrainwater%40thinkpyxl.com/private-655e36b3940502387eb7d70f1f792b8d/basic.ics'
+            },
+            {
+                symbol: 'users',
+                url: 'https://calendar.google.com/calendar/ical/joel.rain2o%40gmail.com/private-cde0ee996c297585a0530670386a379f/basic.ics'
+            },
+            {
+                symbol: 'headphones',
+                url: 'https://calendar.google.com/calendar/ical/5ajgolh6eeeq9vlo00tv3ve2aj58nfcr%40import.calendar.google.com/private-9d21bfc0ed342fe92d25923bf35d0409/basic.ics'
+            }
 		]
     },
     news: {

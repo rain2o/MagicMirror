@@ -29,7 +29,7 @@ jQuery(document).ready(function($) {
 	var eventList = [];
 
 	var lastCompliment;
-	var compliment;
+	//var compliment;
 
     moment.locale(config.lang);
 
@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
 
 	calendar.init();
 
-	compliments.init();
+	//compliments.init();
 
 	weather.init();
 

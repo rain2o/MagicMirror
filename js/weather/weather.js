@@ -29,7 +29,7 @@ var weather = {
 	apiBase: 'http://api.openweathermap.org/data/',
 	weatherEndpoint: 'weather',
 	forecastEndpoint: 'forecast/daily',
-	updateInterval: config.weather.interval || 6000,
+	updateInterval: config.weather.interval || 600000,
 	fadeInterval: config.weather.fadeInterval || 1000,
 	intervalId: null,
 	orientation: config.weather.orientation || 'vertical',
@@ -118,45 +118,16 @@ weather.updateWeatherForecast = function () {
 		data: weather.params,
 		success: function (data) {
 
-			var _opacity = 1,
-				_forecastHtml = '<tr>',
-				_forecastHtml2 = '<tr>',
-				_forecastHtml3 = '<tr>',
-				_forecastHtml4 = '<tr>';
+            var _forecast = data.list[0];
 
 			_forecastHtml = '<table class="forecast-table"><tr>';
-
-			for (var i = 0, count = data.list.length; i < count; i++) {
-
-				var _forecast = data.list[i];
-				
-				if (this.orientation == 'vertical') {
-					_forecastHtml2 = '';
-					_forecastHtml3 = '';
-					_forecastHtml4 = '';
-				}
-
-				_forecastHtml += '<td style="opacity:' + _opacity + '" class="day">' + moment(_forecast.dt, 'X').format('ddd') + '</td>';
-				_forecastHtml2 += '<td style="opacity:' + _opacity + '" class="icon-small ' + this.iconTable[_forecast.weather[0].icon] + '"></td>';
-				_forecastHtml3 += '<td style="opacity:' + _opacity + '" class="temp-max">' + this.roundValue(_forecast.temp.max) + '</td>';
-				_forecastHtml4 += '<td style="opacity:' + _opacity + '" class="temp-min">' + this.roundValue(_forecast.temp.min) + '</td>';
-
-				_opacity -= 0.155;
-
-				if (this.orientation == 'vertical') {
-					_forecastHtml += _forecastHtml2 + _forecastHtml3 + _forecastHtml4 + '</tr>';
-				}
-			}
-			_forecastHtml  += '</tr>',
-			_forecastHtml2 += '</tr>',
-			_forecastHtml3 += '</tr>',
-			_forecastHtml4 += '</tr>';
-			
-			if (this.orientation == 'vertical') {
-				_forecastHtml += '</table>';
-			} else {
-				_forecastHtml += _forecastHtml2 + _forecastHtml3 + _forecastHtml4 +'</table>';
-			}
+            _forecastHtml += '<td class="day fa fa-arrow-up" style="font-size: 80%;"></td><td class="temp-max">' + _forecast.temp.max + '&deg;</td></td>';
+            _forecastHtml += '<tr><td class="day fa fa-arrow-down" style="font-size: 80%;"></td><td class="temp-min">' + _forecast.temp.min + '&deg;</td></tr>';
+            _forecastHtml += '<tr><td class="wi-sunrise day"></td><td class="temp-max">' + _forecast.temp.morn + '&deg;</td></tr>';
+            _forecastHtml += '<tr><td class="wi-day-sunny day"></td><td class="temp-max">' + _forecast.temp.day + '&deg;</td></tr>';
+            _forecastHtml += '<tr><td class="wi-sunset day"></td><td class="temp-max">' + _forecast.temp.eve + '&deg;</td></tr>';
+            _forecastHtml += '<tr><td class="wi-night-clear day"></td><td class="temp-max">' + _forecast.temp.night + '&deg;</td></tr>';
+            _forecastHtml += '</table>';
 
 			$(this.forecastLocation).updateWithText(_forecastHtml, this.fadeInterval);
 
